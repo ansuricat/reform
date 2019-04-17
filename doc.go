@@ -19,7 +19,7 @@
 //
 // This example shows some reform features.
 // It uses https://github.com/AlekSi/pointer to get pointers to values of build-in types.
-package reform // import "gopkg.in/reform.v1"
+package reform // import "github.com/ansuricat/reform"
 
 // Version defines reform version.
 const Version = "v1.4.0-dev"

@@ -3,7 +3,7 @@ package main
 import (
 	"text/template"
 
-	"gopkg.in/reform.v1/parse"
+	"github.com/ansuricat/reform/parse"
 )
 
 // StructData represents struct info for XXX_reform.go file generation.
@@ -19,8 +19,8 @@ import (
 	"fmt"
 	"strings"
 
-	"gopkg.in/reform.v1"
-	"gopkg.in/reform.v1/parse"
+	"github.com/ansuricat/reform"
+	"github.com/ansuricat/reform/parse"
 )
 `))
 

@@ -31,13 +31,13 @@ test:                           ## Run unit tests, generate models, install tool
 	rm -f internal/test/models/*_reform.go
 	rm -f reform-db/*_reform.go
 
-	go install -v gopkg.in/reform.v1/reform
-	go test $(REFORM_TEST_FLAGS) -covermode=count -coverprofile=parse.cover gopkg.in/reform.v1/parse
-	go generate -v -x gopkg.in/reform.v1/internal/test/models
-	go install -v gopkg.in/reform.v1/internal/test/models
+	go install -v github.com/ansuricat/reform/reform
+	go test $(REFORM_TEST_FLAGS) -covermode=count -coverprofile=parse.cover github.com/ansuricat/reform/parse
+	go generate -v -x github.com/ansuricat/reform/internal/test/models
+	go install -v github.com/ansuricat/reform/internal/test/models
 
-	go generate -v -x gopkg.in/reform.v1/reform-db
-	go install -v gopkg.in/reform.v1/reform-db
+	go generate -v -x github.com/ansuricat/reform/reform-db
+	go install -v github.com/ansuricat/reform/reform-db
 
 test-db:                        ## Initialize database and run integration tests.
 	-reform-db -db-driver="$(REFORM_DRIVER)" -db-source="$(REFORM_ROOT_SOURCE)" -db-wait=15s exec \
@@ -57,7 +57,7 @@ test-db:                        ## Initialize database and run integration tests
 	reform-db -db-driver="$(REFORM_DRIVER)" -db-source="$(REFORM_INIT_SOURCE)" exec \
 		internal/test/sql/$(REFORM_DATABASE)_combined.tmp.sql
 
-	go test $(REFORM_TEST_FLAGS) -covermode=count -coverprofile=reform-db.cover gopkg.in/reform.v1/reform-db
+	go test $(REFORM_TEST_FLAGS) -covermode=count -coverprofile=reform-db.cover github.com/ansuricat/reform/reform-db
 	go test $(REFORM_TEST_FLAGS) -covermode=count -coverprofile=reform.cover
 	gocoverutil -coverprofile=coverage.txt merge *.cover
 	rm -f *.cover

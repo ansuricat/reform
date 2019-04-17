@@ -1,8 +1,8 @@
 // Package mysql implements reform.Dialect for MySQL.
-package mysql // import "gopkg.in/reform.v1/dialects/mysql"
+package mysql // import "github.com/ansuricat/reform/dialects/mysql"
 
 import (
-	"gopkg.in/reform.v1"
+	"github.com/ansuricat/reform"
 )
 
 type mysql struct{}

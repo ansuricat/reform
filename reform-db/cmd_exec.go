@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"gopkg.in/reform.v1"
+	"github.com/ansuricat/reform"
 )
 
 var (

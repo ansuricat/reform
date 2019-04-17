@@ -8,7 +8,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"gopkg.in/reform.v1"
+	"github.com/ansuricat/reform"
 )
 
 var (

@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"gopkg.in/reform.v1"
-	"gopkg.in/reform.v1/internal"
+	"github.com/ansuricat/reform"
+	"github.com/ansuricat/reform/internal"
 )
 
 type ReformDBSuite struct {

@@ -3,7 +3,7 @@ package main
 import (
 	"text/template"
 
-	"gopkg.in/reform.v1/parse"
+	"github.com/ansuricat/reform/parse"
 )
 
 type StructData struct {
@@ -28,7 +28,7 @@ import (
 //reform:{{ .SQLName }}
 type {{ .Type }} struct {
 	{{- range $i, $f := .Fields }}
-    {{ $f.Name }} {{ $f.Type }} ` + "`" + `reform:"{{ $f.Column }}{{ if eq $i $.PKFieldIndex }},pk{{ end }}"` + "`" + ` {{ index $.FieldComments $i }}
+    {{ $f.Name }} {{ $f.Type }} ` + "`" + `reform:"{{ $f.Column }}{{ if eq $i $.PKFieldIndex }},pk{{ end }}" json:"{{ $f.Column }}"` + "`" + ` {{ index $.FieldComments $i }}
 	{{- end }}
 }
 `))

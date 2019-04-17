@@ -2,12 +2,12 @@
 package dialects
 
 import (
-	"gopkg.in/reform.v1"
-	"gopkg.in/reform.v1/dialects/mssql"
-	"gopkg.in/reform.v1/dialects/mysql"
-	"gopkg.in/reform.v1/dialects/postgresql"
-	"gopkg.in/reform.v1/dialects/sqlite3"
-	"gopkg.in/reform.v1/dialects/sqlserver"
+	"github.com/ansuricat/reform"
+	"github.com/ansuricat/reform/dialects/mssql"
+	"github.com/ansuricat/reform/dialects/mysql"
+	"github.com/ansuricat/reform/dialects/postgresql"
+	"github.com/ansuricat/reform/dialects/sqlite3"
+	"github.com/ansuricat/reform/dialects/sqlserver"
 )
 
 // ForDriver returns reform Dialect for given driver string, or nil.

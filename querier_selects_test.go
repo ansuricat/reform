@@ -5,9 +5,9 @@ import (
 
 	"github.com/AlekSi/pointer"
 
-	"gopkg.in/reform.v1"
-	"gopkg.in/reform.v1/dialects/postgresql"
-	. "gopkg.in/reform.v1/internal/test/models"
+	"github.com/ansuricat/reform"
+	"github.com/ansuricat/reform/dialects/postgresql"
+	. "github.com/ansuricat/reform/internal/test/models"
 )
 
 var (
