@@ -94,10 +94,12 @@ func getPrimaryKeyColumn(db *reform.DB, catalog, schema, tableName string) *keyC
 			WHERE key_column_usage.table_catalog = %s AND
 				key_column_usage.table_schema = %s AND
 				key_column_usage.table_name = %s AND
+				key_column_usage.column_name LIKE 'Id%%' AND
 				constraint_type = 'PRIMARY KEY'
 			ORDER BY ordinal_position DESC`,
 		strings.Join(using, " AND "), db.Placeholder(1), db.Placeholder(2), db.Placeholder(3),
 	)
+
 	row := db.QueryRow(q, catalog, schema, tableName)
 	var key keyColumnUsage
 	if err := row.Scan(key.Pointers()...); err != nil {
