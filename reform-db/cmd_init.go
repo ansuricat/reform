@@ -96,7 +96,7 @@ func getPrimaryKeyColumn(db *reform.DB, catalog, schema, tableName string) *keyC
 				key_column_usage.table_name = %s AND
 				key_column_usage.column_name LIKE 'Id%%' AND
 				constraint_type = 'PRIMARY KEY'
-			ORDER BY ordinal_position DESC`,
+			ORDER BY column_name ASC`,
 		strings.Join(using, " AND "), db.Placeholder(1), db.Placeholder(2), db.Placeholder(3),
 	)
 
@@ -209,7 +209,8 @@ func cmdInit(db *reform.DB, dir string) {
 	for _, s := range structs {
 		logger.Debugf("%#v", s)
 
-		f, err := os.Create(filepath.Join(dir, strings.ToLower(s.SQLName)+".go"))
+		logger.Debugf("%+v", *PrefixN)
+		f, err := os.Create(filepath.Join(dir, *PrefixN + "_" + strings.ToLower(s.SQLName)+".go"))
 		if err != nil {
 			logger.Fatalf("%s", err)
 		}

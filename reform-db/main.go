@@ -28,6 +28,7 @@ var (
 	driverF = flag.String("db-driver", "", "Database driver (required)")
 	sourceF = flag.String("db-source", "", "Database connection string (required)")
 	waitF   = flag.Duration("db-wait", 0, "Wait for database connection to be established, retrying every second")
+	PrefixN = flag.String("prefix", "", "Project prefix name, will be appended to generated files")
 )
 
 func init() {
