@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"strings"
+	"log"
 )
 
 // NextRow scans next result row from rows to str. If str implements AfterFinder, it also calls AfterFind().
@@ -84,6 +85,7 @@ func (q *Querier) SelectOneFrom(view View, tail string, args ...interface{}) (St
 // See example for idiomatic usage.
 func (q *Querier) SelectRows(view View, tail string, args ...interface{}) (*sql.Rows, error) {
 	query := q.selectQuery(view, tail, false)
+	log.Printf(tail)
 	return q.Query(query, args...)
 }
 
@@ -185,6 +187,18 @@ func (q *Querier) FindAllFrom(view View, column string, args ...interface{}) ([]
 	p := strings.Join(q.Placeholders(1, len(args)), ", ")
 	qi := q.QualifiedView(view) + "." + q.QuoteIdentifier(column)
 	tail := fmt.Sprintf("WHERE %s IN (%s)", qi, p)
+	return q.SelectAllFrom(view, tail, args...)
+}
+
+// FindAllFrom queries view with column and args and returns a slice of new Structs.
+// If view's Struct implements AfterFinder, it also calls AfterFind().
+//
+// In case of query error slice will be nil. If error is encountered during iteration,
+// partial result and error will be returned. Error is never ErrNoRows.
+func (q *Querier) FindAllBySubstringFrom(view View, column string, args ...interface{}) ([]Struct, error) {
+	p := strings.Join(q.Placeholders(1, len(args)), ", ")
+	qi := q.QualifiedView(view) + "." + q.QuoteIdentifier(column)
+	tail := fmt.Sprintf("WHERE %s LIKE %s", qi, p)
 	return q.SelectAllFrom(view, tail, args...)
 }
 
