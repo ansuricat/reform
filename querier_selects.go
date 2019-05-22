@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	"strings"
-	"log"
 )
 
 // NextRow scans next result row from rows to str. If str implements AfterFinder, it also calls AfterFind().
@@ -85,7 +84,6 @@ func (q *Querier) SelectOneFrom(view View, tail string, args ...interface{}) (St
 // See example for idiomatic usage.
 func (q *Querier) SelectRows(view View, tail string, args ...interface{}) (*sql.Rows, error) {
 	query := q.selectQuery(view, tail, false)
-	log.Printf(tail)
 	return q.Query(query, args...)
 }
 
